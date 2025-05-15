@@ -15,4 +15,9 @@ kind: Kustomization
 namespace: argocd
 resources:
 - https://github.com/argoproj-labs/argocd-autopilot/manifests/ha
-- service.yaml
+patches:
+  - path: service-nodeport-patch.yaml
+    target:
+      kind: Service
+      name: argocd-server
+      namespace: argocd
